@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 import { IUser } from "../interfaces/user";
 import { passwordHash } from '../utils/bcrypt'
 
-interface IUserDocument extends IUser, Document { }
+export interface IUserDocument extends IUser, Document { }
 
 const userSchema = new Schema<IUserDocument>({
     name: {
@@ -11,13 +11,14 @@ const userSchema = new Schema<IUserDocument>({
     },
     email: {
         required: true,
-        type: String
+        type: String,
+        unique: true
     },
     password: {
         required: [true, 'Password is required'],
         type: String
     }
-})
+}, { timestamps: true })
 
 userSchema.pre('save', async function (next) {
     const user = this as IUserDocument

@@ -2,9 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import cors from 'cors'
-import { readdirSync } from 'fs'
-import path from 'path'
-
+import authRoutes from './routes/auth'
+dotenv.config()
 
 const app = express()
 
@@ -18,5 +17,6 @@ app.get('/', (request, response) => {
     response.json({ message: 'Welcome to post scheduler' })
 })
 
+app.use('/api/v1', authRoutes)
 
 export default app

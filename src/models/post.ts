@@ -17,7 +17,7 @@ const postSchema = new Schema<IPostDocument>({
         default: false,
         required: false
     }
-})
+}, { timestamps: true })
 
 const Post = mongoose.model<IPostDocument>('Post', postSchema)
 
