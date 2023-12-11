@@ -6,7 +6,7 @@ interface IPostDocument extends IPost, Document { }
 const postSchema = new Schema<IPostDocument>({
     author: {
         required: true,
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId || String,
         ref: 'User'
     },
     content: {

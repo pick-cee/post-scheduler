@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import cors from 'cors'
 import authRoutes from './routes/auth'
+import postRoutes from './routes/post'
 dotenv.config()
 
 const app = express()
@@ -18,5 +19,6 @@ app.get('/', (request, response) => {
 })
 
 app.use('/api/v1', authRoutes)
+app.use('/api/v1', postRoutes)
 
 export default app

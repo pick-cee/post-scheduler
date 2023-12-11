@@ -19,7 +19,7 @@ const verifyToken = async (
                 const userExists = await User.findById(user._id).exec()
                 if (userExists) {
                     request.user = user
-                    client.setEx('user', 86400, JSON.stringify(user))
+                    client.setEx('user', 86400, JSON.stringify(user._id))
                     next()
                 }
                 else {

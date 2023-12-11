@@ -2,7 +2,7 @@ import { ObjectId } from "mongoose";
 import { IUser } from "./user";
 
 export interface IPost {
-    author: IUser | ObjectId
+    author: string | ObjectId
     content: string
     private: boolean
     date?: Date
