@@ -5,4 +5,5 @@ export interface IPost {
     author: IUser | ObjectId
     content: string
     private: boolean
+    date?: Date
 }

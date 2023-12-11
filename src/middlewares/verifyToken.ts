@@ -15,7 +15,7 @@ const verifyToken = async (
         try {
             const token = request.headers.authorization.split(" ")[1]
             jwt.verify(token, `${process.env.JWT_ACCESS_KEY}`, async (err: any, user: any) => {
-                if (err) console.log(err)
+                if (err) return next(console.log(err))
                 const userExists = await User.findById(user._id).exec()
                 if (userExists) {
                     request.user = user
