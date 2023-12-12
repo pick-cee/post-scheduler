@@ -18,10 +18,6 @@ const postSchema = new Schema<IPostDocument>({
         default: false,
         required: false
     },
-    date: {
-        type: Date,
-        required: false
-    }
 
 }, { timestamps: true })
 

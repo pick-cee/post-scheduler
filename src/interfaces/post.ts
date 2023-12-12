@@ -5,5 +5,8 @@ export interface IPost {
     author: string | ObjectId
     content: string
     private: boolean
-    date?: Date
+}
+
+export interface IPostSchedule extends IPost {
+    date: Date
 }
