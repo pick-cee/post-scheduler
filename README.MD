@@ -24,6 +24,7 @@ This eliminates the need for individuals to always have to remember to make a po
 3. Mongo.DB
 4. RabbitMQ
 5. Redis
+6. Cron jobs
 
 ### Getting Started
 
