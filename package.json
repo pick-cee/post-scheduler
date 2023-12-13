@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.ts",
     "start": "tsc && node dist/server.js",
-    "build": "tsc"
+    "build": "tsc",
+    "worker": "nodemon src/consumers/post.schedule.consumer.ts"
   },
   "keywords": [
     "typescript"
