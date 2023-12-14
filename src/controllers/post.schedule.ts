@@ -35,10 +35,44 @@ export const createPostSchedule = async (
         }
     }
     catch (error: any) {
-        console.log(error)
         return response.status(500).json({
             message: 'Server error',
             error: error
+        })
+    }
+}
+
+export const UpdatePostSchedule = async (
+    request: express.Request,
+    response: express.Response,
+    next: NextFunction
+) => {
+    try {
+        const user = await client.get('user') as any
+        const parsedUser = JSON.parse(user)
+        const scheduledPostId = request.query.scheduledPostId
+
+        const scheduledPost = await PostSchedule.findById(scheduledPostId)
+        if (!scheduledPost) {
+            return response.status(404).json({
+                message: 'Post not found....'
+            })
+        }
+        if (scheduledPost.author === parsedUser) {
+            return response.status(401).json({
+                message: 'You are only permittted to update your own post.....'
+            })
+        }
+        const updatedPost = await PostSchedule.findOneAndUpdate({ _id: scheduledPostId, author: parsedUser }, request.body, { $new: true })
+        return response.status(200).json({
+            message: 'Scheduled post has been updated....',
+            updatedPost
+        })
+    }
+    catch (error: any) {
+        return response.status(500).json({
+            message: 'Server error',
+            error: error.message
         })
     }
 }
