@@ -10,7 +10,7 @@ const postScheduleSchema = new Schema<IPostScheduleDocument>({
         ref: 'User'
     },
     content: {
-        required: true,
+        required: false,
         type: String
     },
     private: {

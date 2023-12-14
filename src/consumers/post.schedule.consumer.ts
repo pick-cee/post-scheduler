@@ -16,6 +16,9 @@ const connect = async () => {
     console.log(`Worker is waiting for tasks in the ${queue} queue.`)
 
     channel.consume(`${queue}`, async (message: any) => {
+        if (!message) {
+            console.log('no message')
+        }
         let { user, content, date, isPrivate } = JSON.parse(message!.content.toString())
         try {
             user = await client.get('user') as any

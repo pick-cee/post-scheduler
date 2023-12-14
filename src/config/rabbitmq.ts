@@ -36,13 +36,15 @@ class RabbitMQConnection {
             'amqp://localhost'
         )
         this.channel = await this.connection.createChannel()
+        const messageId = 'schedule-post'
         console.log(`🛸 Created RabbitMQ Channel successfully`)
         if (this.channel) {
             this.channel.assertQueue(`${queue}`, { durable: false })
                 .then(() => {
                     this.channel.sendToQueue(
                         `${queue}`,
-                        Buffer.from(JSON.stringify({ user, content, date, isPrivate }))
+                        Buffer.from(JSON.stringify({ user, content, date, isPrivate })),
+                        { messageId }
                     )
                     console.log(`Task has been sent to the ${queue} queue`)
                 }).catch((err: any) => {
@@ -54,6 +56,7 @@ class RabbitMQConnection {
             console.log('not connected')
         }
     }
+
     catch(error: any) {
         console.error('queue', error)
         throw error

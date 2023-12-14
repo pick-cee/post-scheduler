@@ -10,7 +10,7 @@ const postSchema = new Schema<IPostDocument>({
         ref: 'User'
     },
     content: {
-        required: true,
+        required: false,
         type: String
     },
     private: {
